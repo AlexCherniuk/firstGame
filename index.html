@@ -1,0 +1,129 @@
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        
+        
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        
+      
+    </tr>
+   
+   
+
+
+</table>
+<span>0</span>
+<audio src="shot.mp3"></audio>
+<script>
+
+    //let audio = new Audio();
+    let size = 10;
+    // for
+
+    function randomInteger(min, max) {
+        // получить случайное число от (min-0.5) до (max+0.5)
+        let rand = min - 0.5 + Math.random() * (max - min + 1);
+        return Math.round(rand);
+    }
+
+    // перемещать картинку
+    var virus = document.createElement("img");
+    virus.src = "virus.jpg";
+    var doctor = document.createElement("img");
+    doctor.src = "doctor.png";
+
+    // as array - совокупность элементов с порядковым номером от 0 до... 
+    var rows = document.getElementsByTagName("tr");
+    var cells = document.getElementsByTagName("td");
+
+    var doctorX = 0;
+    var doctorY = 0;
+
+    function moveDoctor() {
+
+        if (doctorX === virusX && doctorY === virusY) {
+            while (doctorX === virusX && doctorY === virusY) {
+                virusX = randomInteger(0, rows.length - 1);
+                virusY = randomInteger(0, rows.length - 1);
+            }
+            var spans = document.getElementsByTagName("span");
+            spans[0].innerText++;
+            var audios = document.getElementsByTagName("audio");
+            audios[0].currentTime = 0;
+            audios[0].play();
+            moveVirus();
+        }
+
+        var doctorIndex = doctorX + doctorY * rows.length;
+        cells[doctorIndex].append(doctor);
+    }
+
+    moveDoctor();
+
+    var virusX = randomInteger(1, rows.length - 1);
+    var virusY = randomInteger(1, rows.length - 1);
+
+    function moveVirus() {
+        var virusIndex = virusX + virusY * rows.length;
+        cells[virusIndex].append(virus);
+    }
+    moveVirus();
+
+
+    //addEventListener
+    document.onkeypress = function (event) {
+        if (event.code === "KeyW") {
+            if (doctorY > 0) {
+                doctorY--;
+            }
+        }
+        if (event.code === "KeyS") {
+            if (doctorY < rows.length - 1) {
+                doctorY++;
+            }
+        }
+        if (event.code === "KeyD") {
+            if (doctorX < rows.length - 1) {
+                doctorX++;
+            }
+        }
+        if (event.code === "KeyA") {
+            if (doctorX > 0) {
+                doctorX--;
+            }
+        }
+
+        moveDoctor();
+    }
+
+
+
+    // должны уметь реагировать на нажатия клавиш
+    // уметь увеличивать счётчик
+</script>
+
+
+
+
+<!-- move css to index.css -->
+<style>
+    img {
+        width: 35px;
+        height: 35px;
+    }
+
+    table {
+        border-spacing: 0px;
+        border-collapse: collapse;
+    }
+
+    td {
+        border: 1px solid black;
+        width: 40px;
+        height: 40px;
+    }
+</style>
