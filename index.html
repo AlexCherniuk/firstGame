@@ -1,52 +1,48 @@
-<table>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+<div>
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
 
 
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
 
 
-    </tr>
+        </tr>
 
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-
-
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
 
 
-    </tr>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
 
 
+        </tr>
 
-
-</table>
+    </table>
+</div>
 <span>0</span>
 <audio src="shot.mp3"></audio>
 <script>
 
-    //let audio = new Audio();
-    //let size = 10;
-    // for
 
     function randomInteger(min, max) {
-      
+
         let rand = min - 0.5 + Math.random() * (max - min + 1);
         return Math.round(rand);
     }
@@ -56,7 +52,7 @@
     var doctor = document.createElement("img");
     doctor.src = "doctor.png";
 
-     
+
     var rows = document.getElementsByTagName("tr");
     var cells = document.getElementsByTagName("td");
 
@@ -82,6 +78,7 @@
         cells[doctorIndex].append(doctor);
     }
 
+
     moveDoctor();
 
     var virusX = randomInteger(1, rows.length - 1);
@@ -90,6 +87,7 @@
     function moveVirus() {
         var virusIndex = virusX + virusY * rows.length;
         cells[virusIndex].append(virus);
+
     }
     moveVirus();
 
@@ -116,13 +114,17 @@
                 doctorX--;
             }
         }
-
+        setTimeout(function (event) { alert("Время истекло"); }, 10000);
         moveDoctor();
+
     }
 
 
 
-    
+
+
+
+
 </script>
 
 
@@ -147,5 +149,17 @@
         border: 1px solid black;
         width: 100px;
         height: 100px;
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
     }
 </style>
